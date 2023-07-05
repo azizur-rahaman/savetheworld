@@ -1,7 +1,18 @@
 package com.hassanpial.savingtheworld;
 
+import static android.view.animation.Animation.INFINITE;
+
+import android.graphics.Color;
+import android.graphics.ColorFilter;
+import android.graphics.PorterDuff;
+import android.graphics.PorterDuffColorFilter;
+import android.graphics.PorterDuffXfermode;
 import android.os.Bundle;
 
+import com.airbnb.lottie.LottieAnimationView;
+import com.airbnb.lottie.LottieProperty;
+import com.airbnb.lottie.model.KeyPath;
+import com.airbnb.lottie.value.LottieValueCallback;
 import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,54 +28,67 @@ import com.hassanpial.savingtheworld.databinding.ActivityMainBinding;
 
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.animation.Animation;
+import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
-    private AppBarConfiguration appBarConfiguration;
-    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
-
-        setSupportActionBar(binding.toolbar);
-
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+        setContentView(R.layout.activity_main);
 
 
-    }
+        LottieAnimationView helicopterAnimationView = findViewById(R.id.helicopter);
+        helicopterAnimationView.playAnimation();
+        helicopterAnimationView.setRepeatCount(INFINITE);
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
+        LottieAnimationView fire1AnimationView = findViewById(R.id.fire1);
+        fire1AnimationView.playAnimation();
+        fire1AnimationView.setRepeatCount(INFINITE);
 
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
+        LottieAnimationView fire2AnimationView = findViewById(R.id.fire2);
+        fire2AnimationView.playAnimation();
+        fire2AnimationView.setRepeatCount(INFINITE);
 
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            return true;
-        }
+        LottieAnimationView fire3AnimationView = findViewById(R.id.fire3);
+        fire3AnimationView.playAnimation();
+        fire3AnimationView.setRepeatCount(INFINITE);
 
-        return super.onOptionsItemSelected(item);
-    }
+        LottieAnimationView fire4AnimationView = findViewById(R.id.fire4);
+        fire4AnimationView.playAnimation();
+        fire4AnimationView.setRepeatCount(INFINITE);
 
-    @Override
-    public boolean onSupportNavigateUp() {
-        NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
-        return NavigationUI.navigateUp(navController, appBarConfiguration)
-                || super.onSupportNavigateUp();
+        LottieAnimationView fire5AnimationView = findViewById(R.id.fire5);
+        fire5AnimationView.playAnimation();
+        fire5AnimationView.setRepeatCount(INFINITE);
+
+
+        LottieAnimationView waterDrop = findViewById(R.id.water);
+        waterDrop.setVisibility(View.GONE);
+
+        int color = Color.parseColor("#d4f1f9");
+        LottieValueCallback<ColorFilter> colorFilterCallback = new LottieValueCallback<>();
+        colorFilterCallback.setValue(new PorterDuffColorFilter(color, PorterDuff.Mode.SRC_ATOP));
+        waterDrop.addValueCallback(new KeyPath("**"), LottieProperty.COLOR_FILTER, colorFilterCallback);
+
+
+
+        Button btn = findViewById(R.id.btn);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+               waterDrop.setVisibility(View.VISIBLE);
+               waterDrop.playAnimation();
+               waterDrop.setRepeatCount(1);
+
+                Toast.makeText(MainActivity.this, "Button Pressed", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
     }
 }
