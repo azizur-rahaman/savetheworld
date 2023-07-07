@@ -5,15 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
+    android:orientation="vertical"
     tools:context=".MainActivity">
+
+
 
     <!--Background -->
     <ImageView
-        android:src="@drawable/background"
-        android:scaleType="fitXY"
+        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:scaleType="fitXY"
+        android:src="@drawable/background" />
+    <EditText
+        android:id="@+id/editText"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:textColor="@color/black"
+        android:hint="Android Is Here"
+        android:text=""
+        android:inputType="text"
         />
+
     <FrameLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -79,26 +93,43 @@
     </FrameLayout>
 
     <!-- water -->
+<FrameLayout
+    android:id="@+id/waterArea"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    android:layout_marginTop="200dp"
+    >
     <com.airbnb.lottie.LottieAnimationView
         android:id="@+id/water"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginTop="200dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:lottie_autoPlay="false"
         android:scaleType="fitXY"
         app:lottie_rawRes="@raw/water_1" />
+</FrameLayout>
+
+
+<View
+    android:id="@+id/makeItGone"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80FF8800"
+
+    />
 
     <Button
         android:id="@+id/btn"
-        android:layout_width="320dp"
-        android:layout_height="50dp"
-        android:text="BTN"
-        app:layout_constraintBaseline_toBottomOf="parent"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@drawable/circle_button"
+        android:gravity="center"
+        android:text="PLAY"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/imageView" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,5 @@
+<!-- circle_button.xml -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android">
+    <solid android:color="#FF0000" /> <!-- Set the desired background color -->
+    <corners android:radius="75dp" /> <!-- Set the radius to half the button's width/height -->
+</shape>
